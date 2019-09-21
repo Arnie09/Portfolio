@@ -119,9 +119,9 @@
             <div class = "tab-container">
             <!-- Tab links -->
             <div class="tab">
-                <button class="tablinks" id = "tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Computer and technology</button>
+                <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Computer and technology</button>
 
-                <button class="tablinks" id = "tablinks" onclick="openCity(event, 'Paris')">Designing and Media</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Designing and Media</button>
 
             </div>
 
@@ -381,10 +381,8 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 conForm text-center">
         <div id="message"></div>
         <form method="post" action="php/contact.php" name="cform" id="cform">
-          <input name="name" id="name" type="text" class="col-xs-12 col-sm-12 col-md-8 col-lg-8" placeholder="Your name" >
-          <input name="email" id="email" type="email" class=" col-xs-12 col-sm-12 col-md-8 col-lg-8 noMarr" placeholder="Your email" >
-          <textarea name="comments" id="comments" cols="" rows="" class="col-xs-12 col-sm-12 col-md-8 col-lg-8" placeholder="Your message"></textarea>
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><input type="submit" id="submit" name="send" class="submitBnt" value="Send message"></div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <input type="submit" id="submit" name="send" class="submitBnt" value="Send message" href="mailto:arnabchanda964@gmail.com"></div>
           <div id="simple-msg"></div>
         </form>
       </div>

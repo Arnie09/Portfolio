@@ -201,7 +201,7 @@ header{
 .banner{
 	overflow:hidden ;
 	margin:0 auto !important;
-	background:#3d3535;
+	background:url(../images/texture3.svg);
 }
 .patternOverlay {
 	background:#372d38;
@@ -437,7 +437,7 @@ header{
 	4. About me Style
 ------------------------------------------------------*/
 .aboutus{
-	background:#756767;
+	background:#4d2c13;
 	text-align:left;
 	color: #fff;
 }
@@ -589,7 +589,7 @@ header{
 ------------------------------------------------------*/
 
 .educationdiploma {
-	background:#473b36;
+	background:#453724;
 }
 .educationdiploma .container{
 	padding-top:65px ;
