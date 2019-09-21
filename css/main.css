@@ -66,6 +66,7 @@ b {
 	color: #fff;
 }
 
+
 /*----------------------------------------------------
 	 2. Document Setup
 ------------------------------------------------------*/
@@ -475,6 +476,7 @@ header{
 /*----------------------------------------------------
 	5. Skill & Expert Style
 ------------------------------------------------------*/
+
 .skillset {
 	background:#473b36;
 	display:table;
@@ -554,7 +556,7 @@ header{
 	font-family:'Crimson Text',serif;
 	font-size:21px;
 	line-height:24px;
-	color:#5b4c5c;
+	color: #c3c8d6;
 	font-style:italic;
 }
 .expertiesdesc {
@@ -564,6 +566,7 @@ header{
 }
 .expertiesdesc p {
 	padding-bottom:0;
+	color: #ccc1cd;
 }
 .expertiesdesc h4 {
 	font-size:14px;
@@ -575,7 +578,7 @@ header{
 }
 .expertiesdesc h5 {
 	font-family: 'Crimson Text', serif;
-	color:#5b4c5c;
+	color:#ffffff;
 	font-size:18px;
 	font-style:italic;
 	font-weight:400;
@@ -659,7 +662,7 @@ header{
 	font-size:11px;
 	line-height:15px;
 	font-weight:bold;
-	color:#6f6470;
+	color:#cfcfcf;
 	text-transform:uppercase;
 	display:block;
 	text-decoration:none;
@@ -938,16 +941,16 @@ ul.portfolioContainer li:hover span.hoverBox .linKed{
 }
 
 .conForm .submitBnt{
-	background:none;
+	background:#d1a5a5;
 	font-family: 'Montserrat', sans-serif;
-	color:#372d38;
+	color:#242424;
 	font-size:12px;
 	letter-spacing:2px;
 	text-transform:uppercase;
 	font-weight:400;
 	text-align:center;
 	margin:0px;
-	border:2px solid #746c75 !important;
+	border:2px solid #fff !important;
 	padding:0;
 	width:322px;
 	height:52px;
