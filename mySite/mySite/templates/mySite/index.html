@@ -9,234 +9,12 @@
         
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <style>
-            
-            body {
-                background-image: url("{% static 'images/Image1.jpg' %}");
-                background-size:100%;
-            }
-
-            .name {
-                display: table;
-                margin-right: auto;
-                margin-left: auto;
-                margin-top: 15%;
-                text-align: center;
-            }
-
-            .name h1 {
-                font-family: 'Open Sans', sans-serif;
-                color: whitesmoke;
-            }
-
-            .name h5 {
-                font-family: 'Open Sans', sans-serif;
-                font-weight: 100;
-                font-style: italic;
-                color: #E8E8E8;
-            }
-
-            .sidepanel {
-                display: flex;
-                height: 100%; /* Specify a height */
-                width: 0; /* 0 width - change this with JavaScript */
-                position: fixed; 
-                top: 0;
-                left: 0;
-                background-image: linear-gradient(to right, rgba(32,32,32,0.7) 50%, transparent);
-                overflow-x: hidden; /* Disable horizontal scroll */
-                padding-top: 60px; /* Place content 60px from the top */
-                transition: 0.75s; /* 0.5 second transition effect to slide in the sidepanel */
-            }
-
-            /* The sidepanel links */
-            .sidepanel a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 25px;
-                color: #818181;
-                display: block;
-                height: 10px;
-                transition: 0.3s;
-            }
-
-            /* When you mouse over the navigation links, change their color */
-            .sidepanel a:hover {
-                color: #f1f1f1;
-                text-decoration: none;
-            }
-
-                /* Position and style the close button (top right corner) */
-            .sidepanel .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-            }
-
-            /* Style the button that is used to open the sidepanel */
-            .openbtn {
-                height: 100px;
-                width: 100px;
-                visibility: visible;
-                font-size: 80px;
-                cursor: pointer;
-                background-color: transparent;
-                color: white;
-                border: none;
-                outline:none !important;
-            }
-
-            .openbtn:hover {
-                color: #444;
-                
-            }
-            
-            .modal-dialog {
-                width: 100px;
-                height: 50px;
-                position:fixed; 
-                top: calc(27%); 
-                left: calc(0%); 
-            }
-            
-
-            .modal {
-                background-color:rgba(0,0,0,0.7); 
-            }
-
-            /* Modal Content/Box */
-            .modal-content {
-                
-                margin: 15% auto; /* 15% from the top and centered */
-                padding: 20px;
-                border: 1px solid #888;
-                width: fit-content; /* Could be more or less, depending on screen size */
-            }
-
-            .col-xs-6 a{
-                padding-left: 65px;
-            }
-
-            /* The Close Button */
-            .close {
-                color: #aaa;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: black;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .fa {
-                padding: 20px;
-                font-size: 30px;
-                color: black;
-                width: 50px;
-                text-align: center;
-                text-decoration: none;
-            }
-
-            .fa-facebook:hover {
-                color:blue;
-                text-decoration: none;
-            }
-
-            .fa-twitter:hover {
-                color:skyblue;
-                text-decoration: none;
-            }
-
-            .fa-github:hover {
-                color:purple;
-                text-decoration: none;
-            }
-
-            .fa-linkedin:hover {
-                color: slateblue;
-                text-decoration: none;
-            }
-
-            .fa-instagram:hover {
-                color: violet;
-                text-decoration: none;
-            }
-
-            
-
-
-        </style>
-
+        <!-- loading the css file -->
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
         <!-- Jquery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-        <script>
-            
-            var NavOpen = false;
-            var ModalOpen = false;
-            /* Set the width of the sidebar to 250px (show it) */
-            function openNav() {
-                NavOpen = true;
-                document.getElementById("mySidepanel").style.width = "50%";
-                document.getElementById("open_button").style.visibility = "hidden";
-
-            }
-
-            /* Set the width of the sidebar to 0 (hide it) */
-            function closeNav() {
-                NavOpen = false;
-                document.getElementById("mySidepanel").style.width = "0%";
-                document.getElementById("open_button").style.visibility = "visible";
-            }
-
-            window.onload = function(){
-            // Get the modal
-                var modal = document.getElementById("myModal");
-
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
-
-                // When the user clicks on the button, open the modal
-                document.getElementById("socialBtn").onclick = function() {
-                    ModalOpen = true;
-                    modal.style.display = "block";
-                }
-
-                $( document ).click(function( event ) {
-
-                    var target = $( event.target );
-                    //console.log(target)
-                    if(NavOpen == true && ModalOpen == false){
-                        if(!(target.is( 'div#mySidepanel.sidepanel') || target.is('a')  ) ){
-                            closeNav();
-                        }
-                        if(target.is('a.closebtn'))
-                            closeNav()
-                    } 
-                    else if(ModalOpen == true){ 
-                        if (target.is(modal) || target.is(span)) {
-                            ModalOpen = false;
-                            modal.style.display = "none";
-                        }
-                    }
-                    else if(ModalOpen == false && NavOpen == false){
-                        if(target.is( 'button.openbtn')){
-                            openNav();
-                        }
-                    }
-                });
-            }
-
-        </script>
-
-        
+        <!-- loading the main script file -->
+        <script src = "{% static 'js/index.js' %}"></script>
         <!-- BOOTSTRAP STUFF -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -246,9 +24,6 @@
     </head>
 
     <body>
-        
-        
-        
         <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn">&times;</a>
                     <a href="{% static 'Files/Resume/Resume.pdf' %}">Resume</a>
@@ -302,9 +77,5 @@
                 </div>
             </div>
         </div>
-                
-        
     </body>
-    
-
 </html>
