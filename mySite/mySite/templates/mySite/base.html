@@ -2,7 +2,7 @@
 <html>
 
     <head>
-        <title>Django Central</title>
+        <title>Arnab's Blogs</title>
         <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
         <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -25,18 +25,31 @@
             border-color: #dc281e;
         }
         .masthead {
-            background: #3398E1;
+            background: rgb(10, 18, 24);
             height: auto;
             padding-bottom: 15px;
             box-shadow: 0 16px 48px #E3E7EB;
             padding-top: 10px;
         }
+        .btn-primary {
+            background-color: black;
+        }
+        
+        .btn-primary:focus,
+        .btn-primary:hover{
+            background-color: grey;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+        }
     </style>
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow" id="mainNav">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}">Django central</a>
+                <a class="navbar-brand" href="{% url 'home' %}">Blogs</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,24 +57,20 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">About</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Policy</a>
-                        </li>
-                        <li class="nav-item text-black">
-                            <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
+                            <a class="nav-link text-black font-weight-bold" href="{% url 'index' %}">Arnab Chanda</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <br>
+        <br>
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
         <!-- Footer -->
         <footer class="py-3 bg-grey">
-            <p class="m-0 text-dark text-center ">Copyright &copy; Django Central</p>
+            <p class="m-0 text-dark text-center ">Copyright &copy;Arnab Chanda</p>
         </footer>
     </body>
 </html>
