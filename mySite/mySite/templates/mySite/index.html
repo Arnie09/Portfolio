@@ -13,8 +13,124 @@
                 background-size:100%;
             }
 
+            .sidepanel {
+                display: flex;
+                height: 100%; /* Specify a height */
+                width: 0; /* 0 width - change this with JavaScript */
+                position: fixed; 
+                top: 0;
+                left: 0;
+                background-image: linear-gradient(to right, #202020	 30% , transparent);
+                overflow-x: hidden; /* Disable horizontal scroll */
+                padding-top: 60px; /* Place content 60px from the top */
+                transition: 0.75s; /* 0.5 second transition effect to slide in the sidepanel */
+            }
+
+            /* The sidepanel links */
+            .sidepanel a {
+                padding: 8px 8px 8px 32px;
+                text-decoration: none;
+                font-size: 25px;
+                color: #818181;
+                display: block;
+                height: 10px;
+                transition: 0.3s;
+            }
+
+            /* When you mouse over the navigation links, change their color */
+            .sidepanel a:hover {
+                color: #f1f1f1;
+                text-decoration: none;
+            }
+
+                /* Position and style the close button (top right corner) */
+            .sidepanel .closebtn {
+                position: absolute;
+                top: 0;
+                right: 25px;
+                font-size: 36px;
+                margin-left: 50px;
+            }
+
+            /* Style the button that is used to open the sidepanel */
+            .openbtn {
+                height: 100px;
+                width: 100px;
+                font-size: 80px;
+                cursor: pointer;
+                background-color: transparent;
+                color: white;
+                border: none;
+                outline:none !important;
+            }
+
+            .openbtn:hover {
+                color: #444;
+                
+            }
+
+            .row {
+            display: flex;
+            height: 100%;
+            }
+
+            .column-left {
+            display: flex;
+            width: 50%;
+            height: 100%;    
+            align-items: center;
+            justify-content: center;
+            }
+
+            .column-right {
+                flex: 50%;
+            }
+
+            @media screen and (max-width: 600px) {
+                .column-left {
+                    width: 100%;
+                }
+                .column-right {
+                    width: 100%;
+                }
+            }
+
         </style>
 
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script>
+            
+            var NavOpen = false;
+            /* Set the width of the sidebar to 250px (show it) */
+            function openNav() {
+                NavOpen = true;
+                document.getElementById("mySidepanel").style.width = "50%";
+            }
+
+            /* Set the width of the sidebar to 0 (hide it) */
+            function closeNav() {
+                NavOpen = false;
+                document.getElementById("mySidepanel").style.width = "0%";
+            }
+
+            $( document ).click(function( event ) {
+                var target = $( event.target );
+                if(NavOpen == true){
+                    if(!(target.is( 'div#mySidepanel.sidepanel') || target.is('a')  ) ){
+                        closeNav();
+                    }
+                } else {
+                    if(target.is( 'button.openbtn')){
+                        openNav();
+                    }
+                }
+            });
+
+        </script>
+
+        
         <!-- BOOTSTRAP STUFF -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -25,11 +141,23 @@
 
     <body>
         
-        <div class = "background" >
+        
+        
+        <div class="row">
+            <div class="column-left">
+                <div id="mySidepanel" class="sidepanel">
+                    <a href="javascript:void(0)" class="closebtn">&times;</a>
+                    <a href="#">Resume</a>
+                    <a href="#">Projects</a>
+                    <a href="#">Social</a>
+                    <a href="#">Blog</a>
+                </div>
+                
+                <button class="openbtn">&#9776;</button>
+            </div>
+            <div class="column-right">
 
-            Hello
-
-
+            </div>
         </div>
 
     </body>
