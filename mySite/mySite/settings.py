@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mySite',
     'blog',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 STATIC_DIRS = [
     os.path.join(os.path.dirname(__file__) , 'static').replace('\\','/')
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'media')
