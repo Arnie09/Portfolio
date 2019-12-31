@@ -6,11 +6,34 @@
             Arnab Chanda | Porfolio Website 
         </title>
 
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
         <style>
             
             body {
                 background-image: url("{% static 'images/Image1.jpg' %}");
                 background-size:100%;
+            }
+
+            .name {
+                display: table;
+                margin-right: auto;
+                margin-left: auto;
+                margin-top: 15%;
+                text-align: center;
+            }
+
+            .name h1 {
+                font-family: 'Open Sans', sans-serif;
+                color: whitesmoke;
+            }
+
+            .name h5 {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 100;
+                font-style: italic;
+                color: #E8E8E8;
             }
 
             .sidepanel {
@@ -20,7 +43,7 @@
                 position: fixed; 
                 top: 0;
                 left: 0;
-                background-image: linear-gradient(to right, #202020	 30% , transparent);
+                background-image: linear-gradient(to right, rgba(32,32,32,0.7) 50%, transparent);
                 overflow-x: hidden; /* Disable horizontal scroll */
                 padding-top: 60px; /* Place content 60px from the top */
                 transition: 0.75s; /* 0.5 second transition effect to slide in the sidepanel */
@@ -56,6 +79,7 @@
             .openbtn {
                 height: 100px;
                 width: 100px;
+                visibility: visible;
                 font-size: 80px;
                 cursor: pointer;
                 background-color: transparent;
@@ -68,32 +92,82 @@
                 color: #444;
                 
             }
+            
+            .modal-dialog {
+                width: 100px;
+                height: 50px;
+                position:fixed; 
+                top: calc(27%); 
+                left: calc(0%); 
+            }
+            
 
-            .row {
-            display: flex;
-            height: 100%;
+            .modal {
+                background-color:rgba(0,0,0,0.7); 
             }
 
-            .column-left {
-            display: flex;
-            width: 50%;
-            height: 100%;    
-            align-items: center;
-            justify-content: center;
+            /* Modal Content/Box */
+            .modal-content {
+                
+                margin: 15% auto; /* 15% from the top and centered */
+                padding: 20px;
+                border: 1px solid #888;
+                width: fit-content; /* Could be more or less, depending on screen size */
             }
 
-            .column-right {
-                flex: 50%;
+            .col-xs-6 a{
+                padding-left: 65px;
             }
 
-            @media screen and (max-width: 600px) {
-                .column-left {
-                    width: 100%;
-                }
-                .column-right {
-                    width: 100%;
-                }
+            /* The Close Button */
+            .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
             }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            .fa {
+                padding: 20px;
+                font-size: 30px;
+                color: black;
+                width: 50px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            .fa-facebook:hover {
+                color:blue;
+                text-decoration: none;
+            }
+
+            .fa-twitter:hover {
+                color:skyblue;
+                text-decoration: none;
+            }
+
+            .fa-github:hover {
+                color:purple;
+                text-decoration: none;
+            }
+
+            .fa-linkedin:hover {
+                color: slateblue;
+                text-decoration: none;
+            }
+
+            .fa-instagram:hover {
+                color: violet;
+                text-decoration: none;
+            }
+
 
         </style>
 
@@ -103,30 +177,59 @@
         <script>
             
             var NavOpen = false;
+            var ModalOpen = false;
             /* Set the width of the sidebar to 250px (show it) */
             function openNav() {
                 NavOpen = true;
                 document.getElementById("mySidepanel").style.width = "50%";
+                document.getElementById("open_button").style.visibility = "hidden";
+
             }
 
             /* Set the width of the sidebar to 0 (hide it) */
             function closeNav() {
                 NavOpen = false;
                 document.getElementById("mySidepanel").style.width = "0%";
+                document.getElementById("open_button").style.visibility = "visible";
             }
 
-            $( document ).click(function( event ) {
-                var target = $( event.target );
-                if(NavOpen == true){
-                    if(!(target.is( 'div#mySidepanel.sidepanel') || target.is('a')  ) ){
-                        closeNav();
-                    }
-                } else {
-                    if(target.is( 'button.openbtn')){
-                        openNav();
-                    }
+            window.onload = function(){
+            // Get the modal
+                var modal = document.getElementById("myModal");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks on the button, open the modal
+                document.getElementById("socialBtn").onclick = function() {
+                    ModalOpen = true;
+                    modal.style.display = "block";
                 }
-            });
+
+                $( document ).click(function( event ) {
+
+                    var target = $( event.target );
+                    //console.log(target)
+                    if(NavOpen == true && ModalOpen == false){
+                        if(!(target.is( 'div#mySidepanel.sidepanel') || target.is('a')  ) ){
+                            closeNav();
+                        }
+                        if(target.is('a.closebtn'))
+                            closeNav()
+                    } 
+                    else if(ModalOpen == true){ 
+                        if (target.is(modal) || target.is(span)) {
+                            ModalOpen = false;
+                            modal.style.display = "none";
+                        }
+                    }
+                    else if(ModalOpen == false && NavOpen == false){
+                        if(target.is( 'button.openbtn')){
+                            openNav();
+                        }
+                    }
+                });
+            }
 
         </script>
 
@@ -143,23 +246,61 @@
         
         
         
-        <div class="row">
-            <div class="column-left">
-                <div id="mySidepanel" class="sidepanel">
+        <div id="mySidepanel" class="sidepanel">
                     <a href="javascript:void(0)" class="closebtn">&times;</a>
-                    <a href="#">Resume</a>
-                    <a href="#">Projects</a>
-                    <a href="#">Social</a>
+                    <a href="{% static 'Files/Resume/Resume.pdf' %}">Resume</a>
+                    <a href="https://www.github.com/Arnie09">Projects</a>
+                    <a id = "socialBtn" href="#">Social</a>
                     <a href="#">Blog</a>
-                </div>
-                
-                <button class="openbtn">&#9776;</button>
-            </div>
-            <div class="column-right">
+        </div>
+        <button class="openbtn" id = "open_button">&#9776;</button>
+        <br>
 
-            </div>
+        <div class="name">
+            <h1 id="product-sans">
+                Arnab Chanda
+            </h1>
+            <h5 id="product-sans">
+                Computer & technology lover
+            </h5>
         </div>
 
+
+        <!-- The Modal -->
+       <div id="myModal" class="modal">
+            <div class = "modal-dialog">
+            <!-- Modal content -->
+                <div class="modal-content">
+                    <span class="close"> &times; </span>
+                    
+                    <div class="row" style="width: fit-content;">
+                        <!-- Half of the modal-body div-->
+                        <div class="col-xs-6">
+                            <a href="https://www.facebook.com/arnablp.chanda" class="fa fa-facebook"></a>
+                        </div>
+                        <!-- Other half of the modal-body div-->
+                        <div class="col-xs-6">
+                            <a href="https://twitter.com/arnie1998" class="fa fa-twitter"></a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <a href="https://www.linkedin.com/in/arnab-chanda-aa671017a/" class="fa fa-linkedin"></a>
+                        </div>
+
+                        <div class="col-xs-6">
+                            <a href="https://github.com/Arnie09" class="fa fa-github"></a>
+                        </div>
+
+
+                        <div class="col-xs-6">
+                            <a href="https://www.instagram.com/arnaaabbb/" class="fa fa-instagram"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                
+        
     </body>
 
 </html>
