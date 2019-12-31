@@ -7,6 +7,23 @@
         <meta name="google" content="notranslate" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- Jquery -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script>
+            $( window ).on('load',function() {
+
+                if ($(window).height() > $('#content').height() + $('#navigation').height()) {
+                        $('.py-3 bg-grey').css({
+                            position: 'fixed',
+                            bottom: 0
+                        });
+                    }
+            });
+            var d = new Date();
+
+            page.currentYear = d.getFullYear();
+        </script>
+        
     </head>
 
     <body>
@@ -89,7 +106,7 @@
         {% endblock content %}
         <!-- Footer -->
         <footer class="py-3 bg-grey">
-            <p class="m-0 text-dark text-center ">Copyright &copy;Arnab Chanda</p>
+            <p class="m-0 text-dark text-center ">Copyright  {% now "Y" %} &copy;Arnab Chanda</p>
         </footer>
     </body>
 </html>
