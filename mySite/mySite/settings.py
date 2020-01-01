@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'mySite',
     'blog',
     'imagekit',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
