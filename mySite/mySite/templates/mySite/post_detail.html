@@ -3,26 +3,36 @@
 <div class="container">
   <div class="row">
     <div class="col card mb-4  mt-3 left  top">
-      <div class="card-body">
-        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
-        <i class=" text-muted">{{ post.author }} | {{ post.created_on }}</i>
-        <br>
-        <br>
-        <div class = "image-container" style="text-align: center;">
-            <img src = "{{ object.image.url }}" class="img-fluid" alt="Responsive image" >
-        </div>
+        <div class="card-body">
+          <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+          <i class=" text-muted">{{ post.author }} | {{ post.created_on }}</i>
+          <br>
+          <br>
+          <div class = "image-container" style="text-align: center;">
+              <img src = "{{ object.image.url }}" class="img-fluid" alt="Responsive image" >
+          </div>
 
-        <br>
-        <br>
-        
-        <p class="card-text ">{{ object.content | safe }}</p>
-        <br>
-        <br>
-        
-        </div>
-    </div>
+          <br>
+          <br>
+          
+          <p class="card-text ">{{ object.content | safe }}</p>
+          <br>
+          <br>
+          
+          </div>
+      </div>
+
+    
     
   </div>
+  <br>
+    <p style="width:fit-content; margin: auto;">
+      In case you want to talk to me regarding this blog, feel free to send me a mail
+      <a href="mailto:arnabchanda964@gmail.com?Subject=Hello%20{{object.title}}" target="_top">Send Mail</a>
+    </p>
 </div>
+<br>
+
+
 
 {% endblock content %}
