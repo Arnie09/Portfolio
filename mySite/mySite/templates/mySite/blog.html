@@ -21,7 +21,8 @@
 <div class="container">
     <div class="row">
         <!-- Blog Entries Column -->
-        <div class="col-12 mt-3">
+        <div class="container-fluid">
+        <div class="col-25">
             {% for post in post_list %}
             <div class="card mb-4">
                 <div class="card-horizontal">
@@ -35,7 +36,7 @@
             </div>
             {% endfor %}
         </div>
-        
+    </div>
     </div>
 </div>
 {%endblock%}
