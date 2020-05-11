@@ -1,0 +1,93 @@
+:root {
+    --main-bg-color: #d2d8d6;
+    --main-txt-color: rgb(51, 51, 51);
+    --main-txt-hover-color: rgb(0, 134, 211);
+    --main-padding: 15px;
+}
+
+body {
+    padding: 10px;
+    padding-bottom: 30px;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    background-image: linear-gradient(315deg, #d2d8d6 0%, #dce8e0 74%);
+    /* Height of the footer */
+}
+
+a {
+    color: var(--main-txt-color) !important;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a:hover {
+    color: var(--main-txt-hover-color) !important;
+}
+
+.entire-body {
+    margin: auto;
+    margin-top: 1%;
+}
+
+nav {
+    margin-bottom: 5%;
+}
+
+.main-items {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.card {
+    /* background: black; */
+    height: fit-content;
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.15);
+}
+
+.card:hover {
+    /* background: black; */
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.25);
+}
+
+.round {
+    border-radius: 25px !important;
+}
+
+.imageHolder {
+    margin-top: 5%;
+}
+
+.nameAndInfoHolder {
+    margin-top: 5%;
+}
+
+h6 {
+    text-align: center;
+}
+
+.profile-social-links {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 10px 0 10px;
+}
+
+footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    /* Height of the footer */
+}
+
+footer div {
+    color: var(--main-txt-color);
+    margin: 0 auto;
+    display: inline-block;
+}
