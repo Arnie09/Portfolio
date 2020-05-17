@@ -1,0 +1,39 @@
+{% extends "mySite/blog_base.html" %} {% load static %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js"></script>
+
+
+<div class="infinite-container align-items-center">
+    {% for post in blogs %}
+    <div class="container col-md-8 infinite-item" href="{% url 'post_detail' post.slug  %}">
+        <div class="card-horizontal recent-blogs2 round2 container align-items-center">
+            <div class="card-body container align-items-center">
+                <a class="card-title h5" href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
+                <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read</p>
+                <p class="card-text">{{post.content|slice:":100"|striptags }}</p>
+            </div>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="loading" style="display: none;">
+    Loading...
+</div>
+{% if page_obj.has_next %}
+<script>
+    console.log('{{blogs.next_page_number}}')
+</script>
+<a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a> {% endif %}
+<script>
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+        onBeforePageLoad: function() {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function($items) {
+            $('.loading').hide();
+        }
+    });
+</script>
+{% endblock %}

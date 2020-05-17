@@ -23,7 +23,7 @@
 
     <div class="entire-body w-75 fluid-responsive">
         <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="#">Arnab Chanda</a>
+            <a class="navbar-brand" href="{% url 'index' %}">Arnab Chanda</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -33,7 +33,7 @@
                         <a class="nav-link" href="{% static 'Files/Resume/Resume.pdf' %}">Resume</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Blog</a>
+                        <a class="nav-link" href="{% url 'blogs' %}">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -65,14 +65,23 @@
 
             <!-- This is the blog card -->
             <div class="blog-posts container card col-md-6 round fluid-responsive">
-                <p>
-                    What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
-                    specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
-                    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking
-                    at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and
-                    web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on
-                    purpose (injected humour and the like).
-                </p>
+
+                <div class="container fluid-responsive align-items-center">
+                    <br>
+                    <br>
+                    <h4 align="center">Most Recent posts </h4>
+                    <div class="recent-blogs-block">
+                        <br> {% for post in blogs %}
+                        <li class="container">
+                            <div class="row round2 d-flex justify-content-between recent-blogs container ">
+                                <a class="h6 font-weight-bold float-left" href="{% url 'post_detail' post.slug  %}">{{post.title}}</a>
+                                <a class="h6 float-right font-weight-italic">{{post.date}}</a>
+                            </div>
+                        </li>
+                        {%endfor%}
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

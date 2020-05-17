@@ -1,0 +1,113 @@
+{% extends "mySite/blog_base.html" %} {% load static %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+
+<div class="align-items-center col-xs-12 fluid-responsive">
+    <div class="card blog-main container col-md-8 col-xs-12">
+        <h1>{% block title %} {{ object.title }} {% endblock title %}</h1>
+        <i class="text-muted">{{ object.author }} | {{ object.date }} | {{object.time}} minute read</i>
+        <br>
+        <br>
+        <img class="img-fluid" src="{{object.image}}">
+        <br>
+        <br>
+
+        <p class="card-text ">{{ object.content | safe }}</p>
+        <br>
+        <br>
+
+        <div class="row fluid-responsive align-items-center">
+            <i class="text-muted mb-0" id="like-counter">{{likes}} people like this!</i> {% if liked == 1 %}
+            <button class="btn-like unlike-review">
+                <i class="fa fa-heart" aria-hidden="true"></i> You liked this
+            </button> {% else %}
+            <button class="btn-like like-review">
+                <i class="fa fa-heart" aria-hidden="true"></i> Like
+            </button> {% endif %}
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    var csrftoken = Cookies.get('csrftoken')
+
+    function csrfSafeMethod(method) {
+        return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+        beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+        }
+    });
+
+    var liked = '{{liked}}'
+
+    $(function() {
+        $(document).on('click', '.unlike-review', function(e) {
+            console.log("unnlike was called")
+
+            if (liked == "-1") {
+                alert("Please log in to like/dislike")
+                return
+            }
+            // call ajax function here
+            var payload = {
+                blog_id: "{{object.blog_id}}",
+            }
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'unlike_blogs' %}",
+                data: {
+                    'payload': payload,
+                },
+                // This is processing of what we get back
+                success: function(msg) {
+                    var response = msg['likes']
+                    document.getElementById("like-counter").innerHTML = response + " people like this!"
+                    $('.unlike-review').html('<i class="fa fa-heart" aria-hidden="true"></i> Like');
+                    $('.unlike-review').addClass('like-review').removeClass('unlike-review');
+                },
+                error: function() {
+                    console.log("Error")
+                }
+
+            });
+        });
+    });
+
+    $(function() {
+        $(document).on('click', '.like-review', function(e) {
+            // call ajax function here
+
+            if (liked == "-1") {
+                alert("Please log in to like/dislike")
+                return
+            }
+            var payload = {
+                blog_id: "{{object.blog_id}}",
+            }
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'like_blogs' %}",
+                data: {
+                    'payload': payload,
+                },
+                // This is processing of what we get back
+                success: function(msg) {
+                    var response = msg['likes']
+                    document.getElementById("like-counter").innerHTML = response + " people like this!"
+                    $('.like-review').html('<i class="fa fa-heart" aria-hidden="true"></i> You liked this');
+                    $('.like-review').addClass('unlike-review').removeClass('like-review');
+                },
+                error: function() {
+                    console.log("Error")
+                }
+
+            });
+        });
+    });
+</script>
+{% endblock %}
