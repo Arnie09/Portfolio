@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'mySite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'portfolio_blog_dev',
+        'NAME': 'django_db',
         'USER': 'pumpkin',
         'PASSWORD': '1234',
         'HOST': 'localhost',
@@ -137,9 +137,9 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
-STATICFILES_DIRS = [
-    STATIC_DIR,
-]
+# STATICFILES_DIRS = [
+#     STATIC_DIR,
+# ]
 
 
 #  Add configuration for static files storage using whitenoise

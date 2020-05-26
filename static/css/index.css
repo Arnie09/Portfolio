@@ -1,0 +1,172 @@
+
+
+body {
+    /* background-image: url("../images/Image1.jpg"); */
+    /* background-size:100%; */
+    background-color: black;
+}
+
+@media screen and (max-width:500px){
+    body{
+        background-color: black;
+    }
+}
+
+
+.name {
+    display: table;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15%;
+    text-align: center;
+}
+
+.name h1 {
+    font-family: 'Open Sans', sans-serif;
+    color: whitesmoke;
+}
+
+.name h5 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 100;
+    font-style: italic;
+    color: #E8E8E8;
+}
+
+.sidepanel {
+    display: flex;
+    height: 100%; /* Specify a height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; 
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to right, rgba(32,32,32,0.7) 50%, transparent);
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.75s; /* 0.5 second transition effect to slide in the sidepanel */
+}
+
+/* The sidepanel links */
+.sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    height: 10px;
+    transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+    color: #f1f1f1;
+    text-decoration: none;
+}
+
+    /* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+    height: 100px;
+    width: 100px;
+    visibility: visible;
+    font-size: 80px;
+    cursor: pointer;
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline:none !important;
+}
+
+.openbtn:hover {
+    color: #444;
+    
+}
+
+
+/* Modal Content/Box */
+.modal-dialog {
+    width: 100px;
+    height: 50px;
+    position:fixed; 
+    top: calc(27%); 
+    left: calc(0%); 
+}
+
+
+.modal {
+    background-color:rgba(0,0,0,0.7); 
+}
+
+
+.modal-content {
+    
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: fit-content; /* Could be more or less, depending on screen size */
+}
+
+.col-xs-6 a{
+    padding-left: 65px;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* These are for the social icon */
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    color: black;
+    width: 50px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.fa-facebook:hover {
+    color:blue;
+    text-decoration: none;
+}
+
+.fa-twitter:hover {
+    color:skyblue;
+    text-decoration: none;
+}
+
+.fa-github:hover {
+    color:purple;
+    text-decoration: none;
+}
+
+.fa-linkedin:hover {
+    color: slateblue;
+    text-decoration: none;
+}
+
+.fa-instagram:hover {
+    color: violet;
+    text-decoration: none;
+}
+
+
