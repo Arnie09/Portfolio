@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mySite',
     'blog',
+    'comments',
     'django_extensions',
     'allauth',
     'allauth.account',

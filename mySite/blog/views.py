@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import AnonymousUser
 from .models import BlogPost, BlogLikes
+from comments.models import Comments
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 
@@ -21,7 +22,19 @@ class blogs(ListView):
         
         context = super().get_context_data(**kwargs)
         context['signout'] = 0 if self.request.user.is_anonymous else 1
+        context['likes'] = {}
+        for blogs in BlogPost.objects.filter():
+            context['likes'][blogs.slug] = BlogLikes.objects.filter(blog_id = blogs).count()
+        context['comments'] = {}
+        for blogs in BlogPost.objects.filter():
+            context['comments'][blogs.slug] = Comments.objects.filter(post = blogs).count()
+        
+        context['topthree'] = BlogPost.objects.filter().order_by('-views')[:3]
+        
+
         return context
+
+    
 
 
 class PostDetail(DetailView):
@@ -41,9 +54,9 @@ class PostDetail(DetailView):
         else:
             like_state = 0 if BlogLikes.objects.filter(blog_id = blogObj, user = response.user).count() == 0 else 1
 
-        print("Here: ",additional_info)
+        comments = Comments.objects.filter(post = blogObj).order_by('-date')
 
-        return render(response, self.template_name, {'likes': additional_info, 'object': blogObj, 'liked': like_state})
+        return render(response, self.template_name, {'likes': additional_info, 'object': blogObj, 'liked': like_state, 'comments': comments})
 
 def like_post(request):
     if request.method == "POST":

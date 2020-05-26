@@ -1,31 +1,105 @@
 {% extends "mySite/blog_base.html" %} {% load static %} {% block content %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/shortcuts/infinite.min.js"></script>
+<script src="{% static 'js/waypoint.js' %}"></script>
+<script src="{% static 'js/infinite.js' %}"></script>
 
-
-<div class="infinite-container align-items-center">
-    {% for post in blogs %}
-    <div class="container col-md-8 infinite-item" href="{% url 'post_detail' post.slug  %}">
-        <div class="card-horizontal recent-blogs2 round2 container align-items-center">
-            <div class="card-body container align-items-center">
+<div class="strike">
+    <span>Top posts</span>
+</div>
+<br>
+<br> {% if topthree|length == 0 %}
+<h3 class="text-muted" style="text-align: center;">No top posts</h3>
+{% else %} {% for post in topthree %}
+<div class="container col-md-8 col-xs-10" href="{% url 'post_detail' post.slug  %}">
+    <div class="card-horizontal recent-blogs2 round2 container align-items-center">
+        <div class="card-body row">
+            <div class="card-body-left col-md-9 container align-items-center">
                 <a class="card-title h5" href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
                 <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read</p>
-                <p class="card-text">{{post.content|slice:":100"|striptags }}</p>
+                <p class="card-text">{{post.short_desc }}</p>
+            </div>
+            <div class="card-body-right col-md-1 col-xs-10 container align-items-center">
+                <div class="row views-count">
+                    <i class="fa fa-eye"></i>
+                    <i class="text-muted mb-0 post_prop">   {{post.views}}</i>
+                </div>
+                <div class="row likes-count">
+                    <i class="fa fa-heart"></i>
+                    <i class="text-muted mb-0 post_prop {{post.slug}}likes">   </i>
+                </div>
+                <div class="row comments-count">
+                    <i class="fa fa-comments-o"></i>
+                    <i class="text-muted mb-0 post_prop {{post.slug}}comments">   </i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endfor %} {% endif %}
+
+<br>
+<br>
+<div class="strike">
+    <span>All posts</span>
+</div>
+<br>
+<br>
+<div class="infinite-container align-items-center">
+    {% if blogs|length == 0 %}
+    <h3 class="text-muted" style="text-align: center;">No top posts</h3>
+    {% else %} {% for post in blogs %}
+    <div class="container col-md-8 col-xs-10 infinite-item" href="{% url 'post_detail' post.slug  %}">
+        <div class="card-horizontal recent-blogs2 round2 container align-items-center">
+            <div class="card-body row">
+                <div class="card-body-left col-md-9 container align-items-center">
+                    <a class="card-title h5" href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read</p>
+                    <p class="card-text">{{post.short_desc }}</p>
+                </div>
+                <div class="card-body-right col-md-1 col-xs-10 container align-items-center">
+                    <div class="row views-count">
+                        <i class="fa fa-eye"></i>
+                        <i class="text-muted mb-0 post_prop">   {{post.views}}</i>
+                    </div>
+                    <div class="row likes-count">
+                        <i class="fa fa-heart"></i>
+                        <i class="text-muted mb-0 post_prop {{post.slug}}likes">   </i>
+                    </div>
+                    <div class="row comments-count">
+                        <i class="fa fa-comments-o"></i>
+                        <i class="text-muted mb-0 post_prop {{post.slug}}comments">   </i>
+                    </div>
+                </div>
             </div>
 
         </div>
     </div>
-    {% endfor %}
+    {% endfor %} {% endif %}
 </div>
 <div class="loading" style="display: none;">
     Loading...
 </div>
-{% if page_obj.has_next %}
+<br>
+<br>
+<br>
 <script>
-    console.log('{{blogs.next_page_number}}')
+    var likes = new Object()
+    var comments = new Object()
 </script>
+{% if page_obj.has_next %}
 <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a> {% endif %}
+
+
 <script>
+    function fill() {
+        for (var key of Object.keys(likes)) {
+            $('.' + key + "likes").html(likes[key])
+        }
+        for (var key of Object.keys(comments)) {
+            $('.' + key + "comments").html(comments[key])
+        }
+    }
+    console.log('helooooooo : {{likes}}')
     var infinite = new Waypoint.Infinite({
         element: $('.infinite-container')[0],
         onBeforePageLoad: function() {
@@ -33,7 +107,17 @@
         },
         onAfterPageLoad: function($items) {
             $('.loading').hide();
+            fill();
         }
     });
 </script>
-{% endblock %}
+
+
+{% for key, value in likes.items %}
+<script>
+    likes['{{key}}'] = '{{value}}'
+</script> {% endfor %} {% for key, value in comments.items %}
+<script>
+    comments['{{key}}'] = '{{value}}'
+    fill()
+</script> {% endfor %} {% endblock %}

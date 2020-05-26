@@ -7,6 +7,7 @@ from uuid import uuid4
 class BlogPost(models.Model):
     blog_id = models.UUIDField(primary_key = True, default = uuid4, editable = False)
     title = models.CharField(max_length = 256, null = False)
+    short_desc = models.CharField(max_length = 512, default = "This is a default description")
     slug = models.SlugField(unique = True, null = False)
     image = models.URLField(null = False)
     author = models.CharField(max_length = 256, null = False)

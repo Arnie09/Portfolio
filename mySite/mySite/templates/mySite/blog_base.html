@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{% static 'images/face.ico' %}" />
     <title>
-        Arnab Chanda | Porfolio Website
+        Arnab Chanda | Blogs
     </title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
@@ -21,34 +21,37 @@
 
 <body>
 
-    <div class="entire-body w-75 fluid-responsive">
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <a class="navbar-brand" href="{% url 'blogs' %}">Arnab's Blogs</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div>
+        <div class="entire-body w-75 fluid-responsive">
+            <nav class="navbar round2 navbar-expand-lg navbar-light ">
+                <a class="navbar-brand" href="{% url 'blogs' %}">Arnab's Blogs</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#">{{user}}</a>
-                    </li>
-                    {% if signout == 0 %}
-                    <li class="nav-item">
-                        <a href="{% provider_login_url 'google' %}">Login</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                    {% endif %}
-                </ul>
-            </div>
-        </nav>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#">{{user}}</a>
+                        </li>
+                        {% if signout == 0 %}
+                        <li class="nav-item">
+                            <a href="{% provider_login_url 'google' %}">Login</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a href="{% url 'account_logout' %}">Logout</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </nav>
 
-        {% block content %}
-        <!-- Content Goes here -->
-        {% endblock content %}
+            {% block content %}
+            <!-- Content Goes here -->
+            {% endblock content %}
+
+        </div>
 
 
 </body>
