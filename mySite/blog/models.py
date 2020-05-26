@@ -1,27 +1,23 @@
 from django.db import models
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill
+from allauth.socialaccount.models import SocialAccount
 from django.contrib.auth.models import User
-from tinymce.models import HTMLField
+from uuid import uuid4
 
+# Create your models here.
+class BlogPost(models.Model):
+    blog_id = models.UUIDField(primary_key = True, default = uuid4, editable = False)
+    title = models.CharField(max_length = 256, null = False)
+    short_desc = models.CharField(max_length = 512, default = "This is a default description")
+    slug = models.SlugField(unique = True, null = False)
+    image = models.URLField(null = False)
+    author = models.CharField(max_length = 256, null = False)
+    content = models.TextField()
+    time = models.IntegerField(null = False)
+    date = models.DateField(null = False)
+    views = models.IntegerField(editable=False, default = 0)
 
-
-STATUS = (
-    (0,"Draft"),
-    (1,"Publish")
-)
-
-class Post(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
-    updated_on = models.DateTimeField(auto_now= True)
-    content = HTMLField()
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-
+class BlogLikes(models.Model):
+    blog_id = models.ForeignKey(BlogPost, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
     class Meta:
-        ordering = ['-created_on']
-
-    def __str__(self):
-        return self.title
+        unique_together = ('blog_id', 'user')
