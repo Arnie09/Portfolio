@@ -236,22 +236,25 @@
 <br>
 <script>
     var likes = new Object()
-    var comments = new Object()
 </script>
 {% if page_obj.has_next %}
 <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}">More</a> {% endif %}
 
+{% for key, value in likes.items %}
+<script>
+    likes['{{key}}'] = '{{value}}'
+</script> {% endfor %} 
+
 
 <script>
     function fill() {
+        console.log("I was called", likes)
         for (var key of Object.keys(likes)) {
+            console.log(likes[key])
             $('.' + key + "likes").html(likes[key])
         }
-        for (var key of Object.keys(comments)) {
-            $('.' + key + "comments").html(comments[key])
-        }
     }
-    console.log('helooooooo : {{likes}}')
+
     var infinite = new Waypoint.Infinite({
         element: $('.infinite-container')[0],
         onBeforePageLoad: function() {
@@ -262,14 +265,10 @@
             fill();
         }
     });
+
+    fill();
+    
 </script>
 
 
-{% for key, value in likes.items %}
-<script>
-    likes['{{key}}'] = '{{value}}'
-</script> {% endfor %} {% for key, value in comments.items %}
-<script>
-    comments['{{key}}'] = '{{value}}'
-    fill()
-</script> {% endfor %} {% endblock %}
+{% endblock %}

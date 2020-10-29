@@ -80,6 +80,7 @@ def like_post(request):
 
         likes = BlogLikes.objects.filter(blog_id = blogObj).count()
 
+        print("Like was called!")
         response = {
             'likes': likes 
         }
