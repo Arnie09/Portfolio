@@ -7,6 +7,7 @@ from blog.models import BlogPost
 
 def index(request):
     posts = BlogPost.objects.filter().order_by('-date')[:5]
+
     recent_posts = {
         'blogs':posts
     }

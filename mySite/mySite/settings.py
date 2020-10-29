@@ -27,7 +27,7 @@ SECRET_KEY = 'p@dlonfzl3738tqfr*71f!v)-6x)r)v8qlb!ubpw)m&w!-nqfd'
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['arnie09.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,12 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mySite',
     'blog',
-    'comments',
+    'user',
     'django_extensions',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -102,9 +98,6 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
@@ -152,7 +145,6 @@ DATABASES['default'].update(prod_db)
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 SITE_ID = 1

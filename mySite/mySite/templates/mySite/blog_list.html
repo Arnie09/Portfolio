@@ -2,58 +2,212 @@
 <script src="{% static 'js/waypoint.js' %}"></script>
 <script src="{% static 'js/infinite.js' %}"></script>
 
-<div class="strike">
-    <span>Top posts</span>
-</div>
-<br>
-<br> {% if topthree|length == 0 %}
-<h3 class="text-muted" style="text-align: center;">No top posts</h3>
-{% else %} {% for post in topthree %}
-<div class="container col-md-8 col-xs-10" href="{% url 'post_detail' post.slug  %}">
-    <div class="card-horizontal recent-blogs2 round2 container align-items-center">
-        <div class="card-body row">
-            <div class="card-body-left col-md-9 container align-items-center">
-                <a class="card-title h5" href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
-                <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read</p>
-                <p class="card-text">{{post.short_desc }}</p>
-            </div>
-            <div class="card-body-right col-md-1 col-xs-10 container align-items-center">
-                <div class="row views-count">
-                    <i class="fa fa-eye"></i>
-                    <i class="text-muted mb-0 post_prop">   {{post.views}}</i>
-                </div>
-                <div class="row likes-count">
-                    <i class="fa fa-heart"></i>
-                    <i class="text-muted mb-0 post_prop {{post.slug}}likes">   </i>
-                </div>
-                <div class="row comments-count">
-                    <i class="fa fa-comments-o"></i>
-                    <i class="text-muted mb-0 post_prop {{post.slug}}comments">   </i>
-                </div>
-            </div>
-        </div>
+<!-- styling for the fill on hover -->
+<style>
 
-    </div>
-</div>
-{% endfor %} {% endif %}
+    .category-buttons-art{
+        border:3px solid rgb(199, 199, 0) !important;
+        position: relative;
+        padding: 10px 10px;
+        margin-right:15px;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #383736;
+        border-radius: 14px;
+        text-transform: uppercase;
+        outline: 0;
+        overflow:hidden;
+        background: none;
+        z-index: 1;
+        cursor: pointer;
+        transition:         0.08s ease-in;
+        -o-transition:      0.08s ease-in;
+        -ms-transition:     0.08s ease-in;
+        -moz-transition:    0.08s ease-in;
+        -webkit-transition: 0.08s ease-in;
+    }
 
-<br>
-<br>
-<div class="strike">
-    <span>All posts</span>
-</div>
+    .category-buttons-art:hover {
+        color: white!important;
+    }
+
+    .category-buttons-art:before {
+        content: "";
+        position: absolute;
+        background:rgb(199, 199, 0);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 100%;
+        z-index: -1;
+        -webkit-transition: top 0.09s ease-in;
+    }
+
+    .category-buttons-art:hover:before {
+        top: 0;
+    }
+
+    .category-buttons-tech{
+        border:3px solid rgb(0, 184, 15) !important;
+        position: relative;
+        padding: 10px 10px;
+        margin-right:15px;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #383736;
+        border-radius: 14px;
+        text-transform: uppercase;
+        outline: 0;
+        overflow:hidden;
+        background: none;
+        z-index: 1;
+        cursor: pointer;
+        transition:         0.08s ease-in;
+        -o-transition:      0.08s ease-in;
+        -ms-transition:     0.08s ease-in;
+        -moz-transition:    0.08s ease-in;
+        -webkit-transition: 0.08s ease-in;
+    }
+
+    .category-buttons-tech:hover {
+        color: white!important;
+    }
+
+    .category-buttons-tech:before {
+        content: "";
+        position: absolute;
+        background:rgb(0, 184, 15);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 100%;
+        z-index: -1;
+        -webkit-transition: top 0.09s ease-in;
+    }
+
+    .category-buttons-tech:hover:before {
+        top: 0;
+    }
+
+
+    .category-buttons-general{
+        border:3px solid rgb(153, 0, 255) !important;
+        position: relative;
+        padding: 10px 10px;
+        margin-right:15px;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #383736;
+        border-radius: 14px;
+        text-transform: uppercase;
+        outline: 0;
+        overflow:hidden;
+        background: none;
+        z-index: 1;
+        cursor: pointer;
+        transition:         0.08s ease-in;
+        -o-transition:      0.08s ease-in;
+        -ms-transition:     0.08s ease-in;
+        -moz-transition:    0.08s ease-in;
+        -webkit-transition: 0.08s ease-in;
+    }
+
+    .category-buttons-general:hover {
+        color: white!important;
+    }
+
+    .category-buttons-general:before {
+        content: "";
+        position: absolute;
+        background: rgb(153, 0, 255);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 100%;
+        z-index: -1;
+        -webkit-transition: top 0.09s ease-in;
+    }
+
+    .category-buttons-general:hover:before {
+        top: 0;
+    }
+
+
+    .category-buttons-all{
+        border:3px solid rgb(53, 53, 53) !important;
+        position: relative;
+        padding: 10px 10px;
+        margin-right:15px;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 2px;
+        color: #383736;
+        border-radius: 14px;
+        text-transform: uppercase;
+        outline: 0;
+        overflow:hidden;
+        background: none;
+        z-index: 1;
+        cursor: pointer;
+        transition:         0.08s ease-in;
+        -o-transition:      0.08s ease-in;
+        -ms-transition:     0.08s ease-in;
+        -moz-transition:    0.08s ease-in;
+        -webkit-transition: 0.08s ease-in;
+    }
+
+    .category-buttons-all:hover {
+        color: white!important;
+    }
+
+    .category-buttons-all:before {
+        content: "";
+        position: absolute;
+        background:rgb(53, 53, 53);
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 100%;
+        z-index: -1;
+        -webkit-transition: top 0.09s ease-in;
+    }
+
+    .category-buttons-all:hover:before {
+        top: 0;
+    }
+    
+
+</style>
+
 <br>
 <br>
 <div class="infinite-container align-items-center">
     {% if blogs|length == 0 %}
     <h3 class="text-muted" style="text-align: center;">No top posts</h3>
-    {% else %} {% for post in blogs %}
-    <div class="container col-md-8 col-xs-10 infinite-item" href="{% url 'post_detail' post.slug  %}">
-        <div class="card-horizontal recent-blogs2 round2 container align-items-center">
+    {% else %}
+
+    <!-- section of the topics -->
+    <div class = "container align-items-center">
+        <div class="row justify-content-center">
+            <a class="btn category-buttons-art" href = "{% url 'blogs' 'Arts' %}">Arts</a>
+            <a class="btn category-buttons-tech" href = "{% url 'blogs' 'Tech' %}">Tech</a>
+            <a class="btn category-buttons-general" href = "{% url 'blogs' 'General' %}">General</a>
+            <a class="btn category-buttons-all" href = "{% url 'blogs' 'index' %}">All</a>
+        </div>
+    </div>
+    
+
+    {% for post in blogs %}
+    
+    <div class="container  col-md-8 col-xs-10 infinite-item" href="{% url 'post_detail' post.slug  %}">
+        <div class="card-horizontal {{post.tags}} recent-blogs2 round2 container align-items-center">
             <div class="card-body row">
                 <div class="card-body-left col-md-9 container align-items-center">
                     <a class="card-title h5" href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
-                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read</p>
+                    <p class="card-text text-muted h6">{{ post.author }} | {{ post.date}} | {{post.time}} min read | {{post.tags}}</p>
                     <p class="card-text">{{post.short_desc }}</p>
                 </div>
                 <div class="card-body-right col-md-1 col-xs-10 container align-items-center">
@@ -65,16 +219,14 @@
                         <i class="fa fa-heart"></i>
                         <i class="text-muted mb-0 post_prop {{post.slug}}likes">   </i>
                     </div>
-                    <div class="row comments-count">
-                        <i class="fa fa-comments-o"></i>
-                        <i class="text-muted mb-0 post_prop {{post.slug}}comments">   </i>
-                    </div>
                 </div>
             </div>
 
         </div>
     </div>
-    {% endfor %} {% endif %}
+    {% endfor %}
+ 
+    {% endif %}
 </div>
 <div class="loading" style="display: none;">
     Loading...

@@ -1,4 +1,4 @@
-{% load static %}{% load socialaccount %} {% providers_media_js %}
+{% load static %} 
 
 <html>
 
@@ -12,47 +12,296 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{% static 'js/jQuery.js' %}"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
     <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.1/js.cookie.js"></script>
+
+    <style>
+        
+        body {
+
+            font-family: 'Varela Round', sans-serif;
+            padding: 10px;
+            padding-bottom: 30px;
+
+            background-image: url("{% static 'images/cool-background.png' %}") !important;
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .modal-title {
+            font-size: small;
+        }
+
+        .modal-login {		
+            color: #636363;
+            width: 350px;
+            margin: 80px auto 0;
+        }
+        .modal-login .modal-content {
+            padding: 20px;
+            border-radius: 5px;
+            border: none;
+        }
+        .modal-login .modal-header {
+            border-bottom: none;   
+            position: relative;
+            justify-content: center;
+        }
+        .modal-login h4 {
+            text-align: center;
+            font-size: 26px;
+            margin: 30px 0 -15px;
+        }
+        .modal-login .form-control:focus {
+            border-color: #70c5c0;
+        }
+        .modal-login .form-control, .modal-login .btn {
+            min-height: 40px;
+            border-radius: 3px; 
+        }
+        .modal-login .close {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }	
+        .modal-login .modal-footer {
+            background: #ecf0f1;
+            border-color: #dee4e7;
+            text-align: center;
+            justify-content: center;
+            margin: 0 -20px -20px;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+        .modal-login .modal-footer a {
+            color: #999;
+        }		
+        .modal-login .avatar {
+            position: absolute;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            top: -70px;
+            width: 95px;
+            height: 95px;
+            border-radius: 50%;
+            z-index: 9;
+            background: rgb(0,212,255);
+            background: linear-gradient(180deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%);
+            padding: 15px;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        }
+        .modal-login .avatar img {
+            width: 100%;
+        }
+        .custom-btn {
+            color: #fff;
+            border-radius: 4px;
+            background: rgb(0,212,255);
+            background: linear-gradient(347deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%);
+            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+            text-decoration: none;
+            transition: all 0.4s;
+            line-height: normal;
+            border: none;
+        }
+        .custom-btn:hover, .modal-login .btn:focus {
+            background-position: 100% 0;
+            moz-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            -webkit-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+            border:  rgba(118,118,255,1);
+            background-image: linear-gradient(205deg, rgba(0,212,255,1) 41%, rgba(118,118,255,1) 100%);
+            box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+            outline: none;
+        }
+        .trigger-btn {
+            display: inline-block;
+            margin: 100px auto;
+        }
+
+        .switcher {
+            font: 1em sans-serif;
+            font-style: italic;
+            text-align: center;
+        }
+
+        .toast {
+            top:1;
+            right:1;
+            margin: 3rem;
+            position: absolute;
+        }
+
+        .result {
+            background-color: white;
+        }
+
+    </style>
 
 </head>
 
+
+
 <body>
+    <nav class="navbar round2 navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" href="{% url 'blogs' 'index' %}">Arnab's Blogs</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-    <div>
-        <div class="entire-body w-75 fluid-responsive">
-            <nav class="navbar round2 navbar-expand-lg navbar-light ">
-                <a class="navbar-brand" href="{% url 'blogs' %}">Arnab's Blogs</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a href="#">{{user}}</a>
-                        </li>
-                        {% if signout == 0 %}
-                        <li class="nav-item">
-                            <a href="{% provider_login_url 'google' %}">Login</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a href="{% url 'account_logout' %}">Logout</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </nav>
-
-            {% block content %}
-            <!-- Content Goes here -->
-            {% endblock content %}
-
+            <ul class="navbar-nav ml-auto">
+                
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class = "anchor-in-nav" href="{% url 'my_profile' %}">{{user}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class = "anchor-in-nav" href="{% url 'create_post'%}">Create new post</a>
+                </li>
+                <li class="nav-item">
+                    <a class = "anchor-in-nav" href="{% url 'signout' %}">Logout</a>
+                </li>
+                {%else%}
+                <li class="nav-item">
+                    <a class = "anchor-in-nav">{{user}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class = "anchor-in-nav" data-toggle="modal" data-target="#modalLogin">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class = "anchor-in-nav" data-toggle="modal" data-target="#modalRegister">Register</a>
+                </li>
+                {%endif%}
+            </ul>
         </div>
+    </nav>
 
+    <div class="entire-body w-75 fluid-responsive">
+        
+        
+        {% if messages %}
+        <div class="toast">
+            <div class="toast-header">
+                Message!
+            </div>
+            <div class="toast-body">
+                <ul class="messages">
+                    {% for message in messages %}
+                    <p style="text-align: center;">{{ message }}</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        
+        
+        
+
+        {% block content %}
+        <!-- Content Goes here -->
+        {% endblock content %}
+
+    </div>
+
+    <div id="modalLogin" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="avatar">
+                        <img src="{% static 'images/avatar.png' %}" alt="Avatar">
+                    </div>				
+                    <h4 class="modal-title">Member Login</h4>	
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form  method="post" action="{% url 'signin' %}"> {% csrf_token %}
+                        <div class="form-group login-elem">
+                            <input id = "username" type="text" class="form-control" name="username" placeholder="Username" required="required">		
+                        </div>
+                        <div class="form-group login-elem">
+                            <input id = "password" type="password" class="form-control" name="password" placeholder="Password" required="required">	
+                        </div>        
+                        <div class="form-group">
+                            <button type="submit" id = "submit" class="custom-btn btn-primary btn-lg btn-block login-btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    
+
+    <div id="modalRegister" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="avatar">
+                        <img src="{% static 'images/avatar.png' %}" alt="Avatar">
+                    </div>				
+                    <h4 class="modal-title">Member Login</h4>	
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form  method="post" action="{% url 'signup' %}"> {% csrf_token %}
+                        <div class="form-group register-elem">
+                            {{ form_register.email }}
+                        </div>
+                        <div class="form-group register-elem">
+                            {{ form_register.username }}
+                        </div>
+                        <div class="form-group register-elem">
+                            {{ form_register.password1 }}
+                        </div>        
+                        <div class="form-group register-elem">
+                            {{ form_register.password2 }}
+                        </div>        
+                        <div class="form-group">
+                            <button type="submit" id = "submit" class="custom-btn btn-primary btn-lg btn-block login-btn">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <script>
+
+        var registerElem = document.getElementsByClassName("register-form-elements")
+        registerElem[0].placeholder = "Email"
+        registerElem[1].placeholder = "Name"
+        registerElem[2].placeholder = "Password"
+        registerElem[3].placeholder = "Re-Type Password"
+        
+        $('.toast').toast({
+            delay: 2000
+        })
+
+        $('.toast').toast('show')
+
+    </script>
+    
 
 </body>
 

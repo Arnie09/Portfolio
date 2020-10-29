@@ -1,0 +1,141 @@
+{% extends "mySite/blog_base.html" %} {% load static %} 
+
+{% block content %}
+
+<style>
+    .page-buttons {
+        margin: 1rem;
+    }
+
+    .link-buttons {
+        margin-left: 1rem;
+        color: blue !important;
+        text-decoration: underline;
+    }
+</style>
+
+{% if display == 1 %}
+
+    
+
+    <div class = "account-info responsive">
+
+        <br>
+        <br>
+        <div class="nameblock">
+            <h5 class ="needClass" id = "title">newbie</h5>
+            <h4 class = "needClass">{{user}}</h4>
+        </div>
+
+        <hr>
+        <div class = "infoblock">
+            <ul class = "list-items">
+                <p>Email: {{user.email}}</p>
+                <p>User Points: {{additional_info.points}}</p>
+                {% if additional_info.canPost %}
+                <p>You have permission to publish posts</p>
+                {%else%}
+                <p>You dont have permission to publish posts</p>
+                {%endif%}
+            </ul>
+        </div>
+        <hr>
+        <h4>Your blogs</h4>
+
+        {% if your_blogs|length == 0 %}
+            <br>
+            <h5>Sorry you have no blogs!</h5>
+        {%else%}
+            <br>
+            <ul>
+            {% for blog in page_obj %}
+                <li class = "blog-list-profile row">
+                    <a href="{% url 'post_detail' blog.slug %}">{{blog.title}}</a>
+                    <a class="link-buttons" href="{% url 'edit_post' blog.slug %}">[Edit]</a>
+                    <a class="link-buttons" onclick='confirmDelete("{{blog.slug}}")'>[Delete]</a>
+                </li>
+                <br>
+            {%endfor%}
+            </ul>
+        {% endif %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a class="page-buttons" href="?page=1">&laquo; first</a>
+                    <a class="page-buttons" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a class="page-buttons" href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a class="page-buttons" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+
+    </div>
+
+    <script>
+        var points = {{ additional_info.points }}
+        points = parseInt(points)
+        console.log(points)
+        var colour = "";
+        var title = "";
+        if (points >= 0 && points <= 99) {
+            colour = "green";
+            title = "Newbie";
+        } else if (points >= 100 && points <= 1000) {
+            colour = "yellow";
+            title = "Senpai";
+        } else {
+            colour = "red";
+            title = "Absolute badass";
+        }
+
+        var needsColour = document.getElementsByClassName("needClass")
+        for (var i = 0; i < needsColour.length; i++){
+            needsColour[i].style.color = colour;
+        }
+
+        document.getElementById("title").innerHTML = title
+
+        function confirmDelete(Slug){
+            console.log(Slug)
+            var delete_blog = false
+            if (confirm("Are you sure you want to delete this post?")) {
+                delete_blog = true
+            } else {
+                delete_blog = false
+            }
+
+            if (delete_blog){
+                $.ajax({
+                    type: 'GET',
+                    url: "/blog/delete_post/"+Slug+"/",
+                    data: {
+                        'slug': Slug,
+                    },
+                    // This is processing of what we get back
+                    success: function(msg) {
+                        Alert("Post was succesfully deleted!")
+                        window.location.reload()
+                    },
+                    error: function() {
+                        console.log("Error")
+                    }
+
+                }); 
+            }
+        }
+
+    </script>
+
+{% else %}
+
+    <h4>You need to login/register in order to have an account</h4>
+
+{% endif %}
+{% endblock %}
