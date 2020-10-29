@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "virtual/bin/python3"
+    "python.pythonPath": "C:\\Users\\Arnab\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "git.ignoreLimitWarning": true
 }

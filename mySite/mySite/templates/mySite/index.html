@@ -1,288 +1,144 @@
 {% load static %}
 
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="{% static 'images/face.ico' %}" />
-        <title>
-            Arnab Chanda | Porfolio Website 
-        </title>
-        
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- loading the css file -->
-        
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <!-- <link rel="stylesheet" href="{% static 'css/index.css' %}"> -->
-        <style>
-        
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'images/face.ico' %}" />
+    <title>
+        Arnab Chanda | Porfolio Website
+    </title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="{% static 'js/jQuery.js' %}"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css">
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <style>
+
         body {
-            background-image: url("{% static 'images/Image1.jpg' %}");
 
+            font-family: 'Varela Round', sans-serif;
+            padding: 10px;
+            padding-bottom: 30px;
+
+            background-image: url("{% static 'images/background-main.png' %}") !important;
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
         }
 
-        
-
-
-        .name {
-            display: table;
-            margin-right: auto;
-            margin-left: auto;
-            margin-top: 15%;
-            text-align: center;
+        .nav-item:hover {
+            background: linear-gradient(347deg, rgba(104, 255, 104, 0.534) 21%, rgba(12, 170, 20, 0.658) 100%) !important;
         }
 
-        .name h1 {
-            font-family: 'Open Sans', sans-serif;
-            color: whitesmoke;
+        .index-nav-link:hover {
+            color: white !important;
         }
 
-        .name h5 {
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 100;
-            font-style: italic;
-            color: #E8E8E8;
+        .main-profile-card{
+            background-color: rgba(255, 255, 255, 0.315);
+            backdrop-filter: blur(15px);
         }
 
-        .sidepanel {
+        .row{
             display: flex;
-            height: 100%; /* Specify a height */
-            width: 0; /* 0 width - change this with JavaScript */
-            position: fixed; 
-            top: 0;
-            left: 0;
-            background-image: linear-gradient(to right, rgba(32,32,32,0.7) 50%, transparent);
-            overflow-x: hidden; /* Disable horizontal scroll */
-            /* padding-top: 60px;  */
-            transition: 0.75s; /* 0.5 second transition effect to slide in the sidepanel */
+            align-items: center;
+            justify-content: center;
         }
 
-        /* The sidepanel links */
-        .sidepanel a {
-            padding-top: 70px;
-            text-decoration: none;
-            font-size: 25px;
-            color: #818181;
-            display: block;
-            height: 10px;
-            transition: 0.3s;
+        a:hover {
+            color: white !important;
         }
 
-        /* When you mouse over the navigation links, change their color */
-        .sidepanel a:hover {
-            color: #f1f1f1;
-            text-decoration: none;
-        }
-
-            /* Position and style the close button (top right corner) */
-        .sidepanel .closebtn {
-            position: absolute;
-            top: 0;
-            right: 25px;
-            font-size: 36px;
-            margin-left: 50px;
-        }
-
-        /* Style the button that is used to open the sidepanel */
-        .openbtn {
-            height: 100px;
-            width: 100px;
-            visibility: visible;
-            font-size: 80px;
-            cursor: pointer;
-            background-color: transparent;
-            color: white;
-            border: none;
-            outline:none !important;
+        .navbar-brand:hover {
+            color:rgba(12, 170, 20, 0.658) !important;
         }
 
 
+    </style>
 
-        .openbtn:hover {
-            color: #444;
-            
-        }
+</head>
 
+<body>
 
-        /* Modal Content/Box */
-        .modal-dialog {
-            width:  100%;
-            height: 100px;
-            position:fixed; 
-            margin: 16% 37%;
-        }
+    <div class="entire-body w-75 fluid-responsive">
+        <nav class="navbar round2 navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="{% url 'index' %}">Arnab Chanda</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link index-nav-link" href="{% static 'Files/Resume/Resume.pdf' %}">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link index-nav-link" href="{% url 'blogs' 'index' %}">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-
-        .modal {
-            background-color:rgba(0,0,0,0.7); 
-        }
-
-
-        .modal-content {
-            
-            margin: 15% auto; /* 15% from the top and centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: fit-content; /* Could be more or less, depending on screen size */
-        }
-
-        .modal-content .row {
-            padding-right: 30px;
-        }
-
-        .col-xs-6 a{
-            padding-left: 65px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-
-        /* These are for the social icon */
-
-        .fa {
-            padding: 20px;
-            font-size: 30px;
-            color: black;
-            width: 50px;
-            text-align: center;
-            text-decoration: none;
-        }
-
-        .fa-facebook:hover {
-            color:blue;
-            text-decoration: none;
-        }
-
-        .fa-twitter:hover {
-            color:skyblue;
-            text-decoration: none;
-        }
-
-        .fa-github:hover {
-            color:purple;
-            text-decoration: none;
-        }
-
-        .fa-linkedin:hover {
-            color: slateblue;
-            text-decoration: none;
-        }
-
-        .fa-instagram:hover {
-            color: violet;
-            text-decoration: none;
-        }
-
-        @media screen and (max-width:720px){
-            body{
-                background-image: none;
-                background-color: black;
-            }
-
-            .openbtn {
-                height: 100px;
-                width: 100px;
-                visibility: visible;
-                font-size: 40px;
-                cursor: pointer;
-                background-color: transparent;
-                color: white;
-                border: none;
-                outline:none !important;
-            }
-            
-            .closebtn{
-                visibility: hidden;
-            }
-
-            .modal-dialog{
-                margin: auto;
-            }
-
-        }
-
-        
-        </style>
-
-        <!-- Jquery -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- loading the main script file -->
-        <script src = "{% static 'js/index.js' %}"></script>
-        <!-- BOOTSTRAP STUFF -->
-        
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    
-    </head>
-
-    <body>
-        <div id="mySidepanel" class="sidepanel">
-            <ul>
-                    <a href="javascript:void(0)" class="closebtn">&times;</a>
-                    <a href="{% static 'Files/Resume/Resume.pdf' %}">Resume</a>
-                    <a href="https://www.github.com/Arnie09">Projects</a>
-                    <a id = "socialBtn" href="#">Social</a>
-                    <a href="{% url 'home' %}">Blog</a>
-            </ul>
-        </div>
-        <button class="openbtn" id = "open_button">&#9776;</button>
         <br>
+        <br>
+        <div class="row fluid-responsive main-items">
+            <!-- This is my card -->
+            <div class="container main-profile-card card col-md-4 round social fluid-responsive align-items-center">
+                <div class="imageHolder justify-content-center">
+                    <img src="{% static 'images/profile_pic.jpg' %}" class="rounded-circle" width="200px" height="200px">
+                </div>
 
-        <div class="name">
-            <h1 id="product-sans">
-                Arnab Chanda
-            </h1>
-            <h5 id="product-sans">
-                Computer & technology lover
-            </h5>
-        </div>
+                <div class="nameAndInfoHolder align-items-center">
+                    <h3>Arnab Chanda</h3>
+                    <h6><i>Student and Developer</i></h6>
+                    <h6><i>Kolkata, India</i></h6>
+                </div>
 
-
-        <!-- The Modal -->
-       <div id="myModal" class="modal">
-            <div class = "modal-dialog">
-            <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close"> &times; </span>
-                    
-                    <div class="row" style="width: fit-content;">
-                        <!-- Half of the modal-body div-->
-                        <div class="col-xs-6">
-                            <a href="https://www.facebook.com/arnablp.chanda" class="fa fa-facebook"></a>
-                        </div>
-                        <!-- Other half of the modal-body div-->
-                        <div class="col-xs-6">
-                            <a href="https://twitter.com/arnie1998" class="fa fa-twitter"></a>
-                        </div>
-
-                        <div class="col-xs-6">
-                            <a href="https://www.linkedin.com/in/arnab-chanda-aa671017a/" class="fa fa-linkedin"></a>
-                        </div>
-
-                        <div class="col-xs-6">
-                            <a href="https://github.com/Arnie09" class="fa fa-github"></a>
-                        </div>
+                <div class=" row profile-social-links align-items-center">
+                    <li><a href="https://www.instagram.com/arnaaabbb/" target="_blank" rel="noopener"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.facebook.com/arnablp.chanda" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://github.com/Arnie09" target="_blank" rel="noopener"><i class="fa fa-github"></i></a></li>
+                    <li><a href="https://www.linkedin.com/in/arnab-chanda-aa671017a/" target="_blank" rel="noopener"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="mailto:arnabchanda964@gmail.com" target="_blank" rel="noopener"><i class="fa fa-envelope"></i></a></li>
+                </div>
 
 
-                        <div class="col-xs-6">
-                            <a href="https://www.instagram.com/arnaaabbb/" class="fa fa-instagram"></a>
-                        </div>
+            </div>
+
+            <!-- This is the blog card -->
+            <div class="blog-posts main-profile-card container card col-md-6 round fluid-responsive">
+
+                <div class="container fluid-responsive align-items-center">
+                    <br>
+                    <br>
+                    <h4 align="center">Most Recent posts </h4>
+                    <div class="recent-blogs-block">
+                        <br> {% for post in blogs %}
+                        <li class="container">
+                            <div class="row round2  d-flex justify-content-between recent-blogs container ">
+                                <a class="h6 font-weight-bold float-left" href="{% url 'post_detail' post.slug  %}">{{post.title}}</a>
+                                <a class="h6 float-right font-weight-italic">{{post.date}}</a>
+                            </div>
+                        </li>
+                        {%endfor%}
                     </div>
                 </div>
+
             </div>
         </div>
-    </body>
+    </div>
+
+    <!-- <footer id="footer" class="footer">
+        <div class="copyright">Copyright © 2019 - 2020 Arnab Chanda </div>
+    </footer> -->
+</body>
+
 </html>

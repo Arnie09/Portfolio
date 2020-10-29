@@ -1,0 +1,79 @@
+{% extends "mySite/blog_base.html" %} {% load static %} 
+
+{% block content %}
+
+<style>
+
+    .error{
+        background-color: rgba(255, 0, 0, 0.171);
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+
+    .success{
+        background-color: rgba(0, 255, 98, 0.171);
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+
+    
+
+</style>
+
+<script>
+
+
+    function onInput() {
+        console.log($('#textContent').val())
+        document.getElementById("displayArea").innerHTML = $('#textContent').val()
+    }
+
+</script>
+
+
+<div class = "row col-md-12 responsive">
+
+    <div class = "div-form col-md-6">
+
+        <h4>Create blog</h4>
+
+        {% if messages %}
+
+        <div class="messages col-md-12">
+            {% for message in messages %}
+            <div class="indimessages {{message.tags}}">
+                {{message}}
+            </div>
+            {% endfor %}
+        </div>
+        <br>
+        {% endif %}
+        {% if edit == 1 %}
+            <form id="newBlogForm" method="POST" action="{% url 'edit_post' 'abc' %}"> {% csrf_token %}
+        {% else %}
+            <form id="newBlogForm" method="POST" action="{% url 'create_post' %}"> {% csrf_token %}
+        {% endif %}
+        
+            <div class="form-group">
+                
+                {{form.as_p}}
+
+                <div class="form-group">
+                    <button type="submit" id = "submit" class="custom-btn btn-primary btn-lg btn-block">Create</button>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+    <div class="div-result col-md-6">
+        <h4>Sample Output</h4>
+        <div class = "result" id = "displayArea">
+
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

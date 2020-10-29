@@ -1,0 +1,349 @@
+:root {
+    --main-bg-color: #d2d8d6;
+    --main-txt-color: rgb(85, 12, 12);
+    --main-txt-hover-color: rgb(0, 134, 211);
+    --main-padding: 15px;
+}
+
+body {
+    padding: 10px;
+    padding-bottom: 30px;
+    height: 100%;
+}
+
+
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgba(118,118,255,1);
+    border-radius: 10px;
+}
+
+.entire-body {
+    margin: auto;
+    padding-top: 1%;
+}
+
+.blog-main {
+    margin-bottom: 5%;
+    padding: 2%;
+}
+
+.btn-like {
+    display: block;
+    margin-left: 5px;
+    text-align: center;
+    background:  linear-gradient(347deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%);
+    border-radius: 3px;
+    box-shadow: 0 10px 20px -8px  rgba(118,118,255,1);
+    border-color: aqua;
+    padding: 10px 17px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #ffffff;
+    text-decoration: none;
+    -webkit-transition: 0.3s ease;
+    transition: 0.3s ease;
+}
+
+.btn-like:hover {
+    transform: translateY(-3px);
+}
+
+.btn-like .fa {
+    margin-right: 5px;
+}
+
+nav {
+    margin-bottom: 5%;
+}
+
+.main-items {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.card {
+    /* background: black; */
+    height: fit-content;
+    /* padding: 5px; */
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.15);
+    transition: box-shadow .4s, -webkit-box-shadow .4s;
+}
+
+.card-blog {
+    padding: 5px;
+    border-bottom: thin;
+    border-color: black;
+}
+
+.card-blog:hover {
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.25);
+}
+
+.card:hover {
+    /* background: black; */
+    box-shadow: 0 5px 15px 2px rgba(0, 0, 0, 0.25);
+}
+
+.round {
+    border-radius: 25px !important;
+}
+
+.round2 {
+    border-radius: 10px !important;
+}
+
+.imageHolder {
+    margin-top: 5%;
+}
+
+.recent-blogs-block {
+    margin-left: 5% !important;
+    margin-right: 5% !important;
+    margin-bottom: 5% !important;
+    margin-top: 0% !important;
+}
+
+.recent-blogs {
+    padding: 5%;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 15px;
+    /* border-top: 0.5px solid rgba(185, 185, 185, 0.308); */
+    box-shadow: 0px 5px 8px 3px #00000018;
+}
+
+.recent-blogs:hover {
+    border-top: none;
+    box-shadow: 0px 5px 8px 2px #00000054;
+    transition: box-shadow .4s, -webkit-box-shadow .4s;
+}
+
+.recent-blogs2 {
+    /* background-color: rgb(243, 243, 243); */
+    background-color: white;
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    margin-top: 35px;
+    
+    /* border-top: 0.5px solid rgba(185, 185, 185, 0.308); */
+    /* box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.10);
+    transition: box-shadow .4s, -webkit-box-shadow .4s; */
+}
+
+.views-count{
+    color:  rgba(118,118,255,1);
+}
+
+.likes-count {
+    margin-top: 5px;
+    color:  rgba(118,118,255,1);
+}
+
+
+.nameAndInfoHolder {
+    margin-top: 5%;
+}
+
+h6 {
+    text-align: center;
+}
+
+.profile-social-links {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 10px 0 10px;
+}
+
+footer {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    /* Height of the footer */
+}
+
+footer div {
+    color: var(--main-txt-color);
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.comment-box {
+    margin-top: 2%;
+    margin-bottom: 100px;
+}
+
+.comment-date {
+    margin-left: 2%;
+    font-weight: 100;
+}
+
+.card-comments {
+    padding: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-bottom: 5%;
+    background-color: rgba(255, 255, 255, 0.623);
+}
+
+.share-button {
+    background-color: rgb(141, 37, 37) !important;
+}
+
+.post_prop {
+    margin-left: 10px;
+}
+
+.delete-button {
+    margin-left: 10px;
+    font-style: italic;
+    font-weight: 100;
+}
+
+.delete-button:hover {
+    color: red !important;
+}
+
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.strike>span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike>span:before,
+.strike>span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 500%;
+    height: 1px;
+    background: grey;
+}
+
+.strike>span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike>span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+
+.nav-item {
+    padding: 0.5rem;
+}
+
+.nav-item:hover {
+    background: linear-gradient(347deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%);
+    border-radius: 2rem;
+}
+
+
+
+
+a {
+    color: var(--main-text-color) !important;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-decoration: none !important;
+}
+
+a:hover {
+    color:  rgba(118,118,255,1) !important;
+}
+
+
+
+.navbar-brand:hover {
+    color: linear-gradient(347deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%) !important;
+    background: transparent !important;
+}
+
+.anchor-in-nav {
+    color: var(--main-text-color)!important;
+}
+
+.nav-item:hover,
+.anchor-in-nav:hover {
+    background: linear-gradient(347deg, rgba(0,212,255,1) 21%, rgba(118,118,255,1) 100%);
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+nav {
+    margin: 0em;
+    position: fixed;
+    top: 0;    
+}
+
+.blog-list-profile {
+    list-style-type: disc !important;
+}
+
+
+.General{
+    background-color: rgba(243, 221, 255, 0.705);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(3, 163, 255, 0.329);
+    box-shadow: 0 5px 15px 0 rgba(105, 72, 255, 0.199);
+    transition: box-shadow .4s, -webkit-box-shadow .4s;
+}
+
+.General:hover {
+    box-shadow: 0 5px 15px 0 rgba(93, 6, 255, 0.678);
+}
+
+.Arts{
+    background-color: rgba(255, 255, 233, 0.685);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgb(236, 255, 62);
+    box-shadow: 0 5px 15px 0 rgba(215, 255, 72, 0.192);
+    transition: box-shadow .4s, -webkit-box-shadow .4s;
+}
+
+.Arts:hover {
+    box-shadow: 0 5px 15px 0 rgba(255, 251, 6, 0.678);
+}
+
+.Tech{
+    background-color: rgba(221, 255, 218, 0.774);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgb(62, 255, 136);
+    box-shadow: 0 5px 15px 0 rgba(87, 255, 72, 0.192);
+    transition: box-shadow .4s, -webkit-box-shadow .4s;
+}
+
+.Tech:hover {
+    box-shadow: 0 5px 15px 0 rgba(6, 255, 39, 0.678);
+}
+
+
+@media only screen and (max-width: 720px) {
+    .blog-posts {
+        margin-top: 10%;
+    }
+}
