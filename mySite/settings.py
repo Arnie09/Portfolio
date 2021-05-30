@@ -29,10 +29,10 @@ STATIC_DIR=os.path.join(BASE_DIR,'static')
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['arnie09-staging.herokuapp.com', 'arnie09.herokuapp.com']
 
 
 # Application definition
